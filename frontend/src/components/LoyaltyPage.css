@@ -1,0 +1,199 @@
+.loyalty-page {
+    padding: 2rem 1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.back-link {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    color: var(--color-primary);
+}
+
+.loyalty-card {
+    background: white;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    color: white;
+    position: relative;
+}
+
+.card-header.tier-silver {
+    background: linear-gradient(135deg, #bdc3c7, #2c3e50);
+}
+
+.card-header.tier-gold {
+    background: linear-gradient(135deg, #f1c40f, #b7950b);
+}
+
+.card-header.tier-platinum {
+    background: linear-gradient(135deg, #3498db, #8e44ad);
+}
+
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 1rem;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.user-info {
+    flex: 1;
+}
+
+.user-info h2 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.tier-badge {
+    font-size: 0.8rem;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 2px 8px;
+    border-radius: 12px;
+}
+
+.points-display {
+    text-align: right;
+}
+
+.points-display .amount {
+    display: block;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.points-display .label {
+    font-size: 0.7rem;
+    opacity: 0.8;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.progress-section {
+    margin-bottom: 2rem;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 0.5rem;
+}
+
+.progress-bar-bg {
+    height: 8px;
+    background: #f1f3f5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+}
+
+.benefit-text {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #555;
+    text-align: center;
+    font-style: italic;
+}
+
+.history-section h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.history-list {
+    list-style: none;
+    padding: 0;
+}
+
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.history-item:last-child {
+    border-bottom: none;
+}
+
+.history-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.history-action {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.history-date {
+    font-size: 0.75rem;
+    color: #999;
+}
+
+.history-points {
+    color: #28a745;
+    font-weight: 700;
+}
+
+.dev-tools {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px dashed #ddd;
+}
+
+.simulate-points-btn {
+    background: #e9ecef;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    color: #495057;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.simulate-points-btn:hover {
+    background: #dee2e6;
+}

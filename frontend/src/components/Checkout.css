@@ -1,0 +1,217 @@
+.checkout-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.checkout-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    background: none;
+    border: none;
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.checkout-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+}
+
+.checkout-items {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.checkout-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.checkout-item:last-child {
+    border-bottom: none;
+}
+
+.item-thumb {
+    width: 80px;
+    height: 80px;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+.item-info {
+    flex-grow: 1;
+}
+
+.item-info h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--color-text);
+}
+
+.item-options {
+    font-size: 0.85rem;
+    color: var(--color-secondary);
+    margin: 0 0 0.5rem 0;
+}
+
+.item-price {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.item-qty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #f8f9fa;
+    border-radius: 6px;
+    height: fit-content;
+}
+
+.item-qty button {
+    border: none;
+    background: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+.item-qty span {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.checkout-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.bill-card,
+.payment-card,
+.dine-in-confirm-card {
+    background: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+}
+
+.bill-row.discount {
+    color: #28a745;
+}
+
+.bill-row.total {
+    font-weight: 800;
+    font-size: 1.25rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+
+.bill-divider {
+    height: 1px;
+    background: #eee;
+    margin: 1rem 0;
+}
+
+.promo-section {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.promo-section input {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.promo-section button {
+    background: #212529;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0 1rem;
+    cursor: pointer;
+}
+
+.payment-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.payment-option.selected {
+    border-color: var(--color-primary);
+    background: #fff0f0;
+}
+
+.payment-label {
+    font-weight: 500;
+}
+
+.bkash-label {
+    color: #e2136e;
+    font-weight: 700;
+}
+
+.nagad-label {
+    color: #f16722;
+    font-weight: 700;
+}
+
+.place-order-btn {
+    width: 100%;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.place-order-btn:hover {
+    opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+    .checkout-content {
+        grid-template-columns: 1fr;
+    }
+}

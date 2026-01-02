@@ -1,0 +1,337 @@
+.qr-landing {
+    padding: 2rem;
+    text-align: center;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #f0f2f5;
+    /* Clean light grey background */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background Gradients */
+.qr-landing::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 107, 107, 0.03) 0%, transparent 70%);
+    animation: rotateBg 30s linear infinite;
+    z-index: 0;
+}
+
+.back-link {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+    color: #555;
+    background: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.qr-card {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 30px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    /* Soft, large shadow */
+    max-width: 360px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+/* QR Code Styles */
+.qr-frame {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 2rem;
+    border-radius: 20px;
+    padding: 10px;
+    background: white;
+    border: 1px solid #eee;
+}
+
+.qr-code {
+    width: 100%;
+    height: 100%;
+}
+
+.scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: #ff6b6b;
+    box-shadow: 0 0 10px #ff6b6b;
+    animation: scan 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes scan {
+    0% {
+        top: 5%;
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        top: 95%;
+        opacity: 0;
+    }
+}
+
+.simulate-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* Post-Scan Styles (Matching Screenshot 1) */
+.table-title {
+    margin: 0 0 2rem;
+    font-size: 1.6rem;
+    color: #2d3436;
+    font-weight: 800;
+}
+
+.action-area {
+    margin-bottom: 2rem;
+}
+
+.menu-btn-pill {
+    width: 100%;
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
+    /* Soft Red Gradient */
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+    /* Glowing Red Shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.menu-btn-pill:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
+}
+
+.btn-icon-circle {
+    background: rgba(255, 255, 255, 0.2);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.divider-line {
+    height: 1px;
+    background: #f1f3f5;
+    margin: 0 auto 1.5rem;
+    width: 100%;
+}
+
+.assist-title {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    color: #495057;
+}
+
+.assist-btn-pill {
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    /* Slightly squarer than menu btn */
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto;
+    transition: all 0.2s;
+}
+
+.assist-btn-pill:hover {
+    background: #e9ecef;
+    border-color: #ced4da;
+}
+
+/* Modal Styles (Matching Screenshot 2) */
+.assistance-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    /* Darker dim */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.2s;
+}
+
+.assistance-modal {
+    background: white;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 340px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+    animation: zoomIn 0.3s ease;
+}
+
+.assistance-modal h3 {
+    margin: 0 0 0.5rem;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 800;
+}
+
+.subtitle-badge {
+    background: #ffec99;
+    /* Example highlight color, or just grey text */
+    background: #333;
+    color: white;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.service-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.service-item {
+    background: white;
+    border: 1px solid #e9ecef;
+    padding: 1rem;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.service-item:hover {
+    border-color: #ff6b6b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.service-icon {
+    font-size: 1.5rem;
+}
+
+.service-item span:last-child {
+    font-weight: 600;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.close-assist {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #aaa;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-assist:hover {
+    color: #333;
+}
+
+.request-toast-inline {
+    margin-top: 1rem;
+    color: #2b8a3e;
+    font-weight: 700;
+}
+
+@keyframes rotateBg {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.fade-in-up {
+    animation: zoomIn 0.4s ease;
+}

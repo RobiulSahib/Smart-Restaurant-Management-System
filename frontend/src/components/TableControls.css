@@ -1,0 +1,154 @@
+.table-controls-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #212529;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 900;
+    width: 95%;
+    max-width: 650px;
+    justify-content: space-between;
+}
+
+.track-order-btn {
+    background: #00c853;
+    /* Vibrant Green */
+    border: 2px solid white;
+    color: white;
+    padding: 0.8rem 1.2rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0, 200, 83, 0.4);
+    transition: transform 0.2s;
+}
+
+.track-order-btn:hover {
+    transform: scale(1.05);
+    background: #00e676;
+}
+
+.pulse-dot {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    display: inline-block;
+    animation: dotPulse 1.2s infinite;
+    box-shadow: 0 0 10px white;
+}
+
+@keyframes dotPulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.4);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(10px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.table-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+}
+
+.table-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.table-number {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.table-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.waiter-btn,
+.stock-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
+}
+
+.waiter-btn:hover,
+.stock-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.stock-btn {
+    border: 1px dashed rgba(255, 255, 255, 0.4);
+}
+
+@media (max-width: 480px) {
+    .table-controls-bar {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+        border-radius: 20px;
+        bottom: 0;
+        width: 100%;
+        margin: 0;
+        left: 0;
+        transform: none;
+    }
+
+    .table-actions {
+        width: 100%;
+    }
+
+    .waiter-btn,
+    .stock-btn {
+        flex: 1;
+        justify-content: center;
+    }
+}

@@ -1,0 +1,493 @@
+/* Waiter Panel Styles - Modern & Polished */
+.wp-login,
+.wp-container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #2d3436;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Login Screen */
+.wp-login {
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+}
+
+.login-card h2 {
+    margin-bottom: 2rem;
+    color: #2d3436;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+.wp-user-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.wp-user-btn {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.wp-user-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    border-color: var(--user-color);
+}
+
+.wp-user-btn:active {
+    transform: scale(0.98);
+}
+
+.wp-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--user-color);
+    color: white;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.wp-user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.wp-user-info .name {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.wp-user-info .role {
+    font-size: 0.75rem;
+    color: #636e72;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Admin Auth Box */
+.admin-auth-box input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 15px 0;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.admin-auth-box input:focus {
+    border-color: #2d3436;
+}
+
+.auth-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.auth-actions button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.confirm-btn {
+    background: #2d3436;
+    color: white;
+}
+
+.error-msg {
+    color: #ff7675;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+/* Header */
+.wp-header {
+    background: white;
+    padding: 15px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.wp-header-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #2d3436;
+}
+
+.wp-back-btn,
+.wp-logout {
+    border: none;
+    background: none;
+    color: #0984e3;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+/* Dashboard Grid */
+.wp-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 20px;
+    overflow-y: auto;
+}
+
+.wp-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    position: relative;
+    overflow: hidden;
+}
+
+.wp-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.wp-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+}
+
+.wp-card.occupied::before {
+    background: #ff7675;
+}
+
+.wp-card.free::before {
+    background: #00b894;
+}
+
+.wp-card.payment::before {
+    background: #fdcb6e;
+}
+
+.wp-card-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.table-num {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #2d3436;
+}
+
+.guest-badge {
+    color: #636e72;
+    font-size: 0.95rem;
+    background: #f1f2f6;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.wp-card-body {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.occupied .status-dot {
+    background: #ff7675;
+}
+
+.free .status-dot {
+    background: #00b894;
+}
+
+.payment .status-dot {
+    background: #fdcb6e;
+}
+
+.status-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #2d3436;
+}
+
+.wp-card-footer {
+    color: #636e72;
+    font-size: 0.9rem;
+    border-top: 1px solid #f1f2f6;
+    padding-top: 12px;
+}
+
+/* Detail View */
+.wp-detail {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.wp-actions-bar {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 24px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    border-radius: 14px;
+    font-weight: 700;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.1s;
+}
+
+.action-btn:active {
+    transform: scale(0.98);
+}
+
+.add-btn {
+    background: linear-gradient(135deg, #0984e3, #74b9ff);
+}
+
+.transfer-btn {
+    background: linear-gradient(135deg, #e17055, #ff7675);
+}
+
+.transfer-dropdown {
+    background: #fff;
+    padding: 15px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.transfer-dropdown button {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background: #f1f2f6;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    color: #2d3436;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.2s;
+}
+
+.transfer-dropdown button:hover {
+    background: #e1e2e6;
+}
+
+.order-list {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.order-list h4 {
+    margin: 0 0 20px 0;
+    border-bottom: 1px solid #f1f2f6;
+    padding-bottom: 15px;
+    color: #2d3436;
+    font-size: 1.1rem;
+}
+
+.order-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #f1f2f6;
+}
+
+.order-info {
+    font-weight: 500;
+    color: #2d3436;
+}
+
+.qty {
+    display: inline-block;
+    background: #dfe6e9;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    margin-right: 12px;
+    color: #636e72;
+}
+
+.serve-btn {
+    background: #00b894;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.serve-btn:hover {
+    background: #00a884;
+}
+
+.served-badge {
+    color: #00b894;
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: rgba(0, 184, 148, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Menu Grid */
+.wp-menu-grid {
+    padding: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+}
+
+.menu-btn {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 24px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    transition: all 0.2s;
+}
+
+.menu-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.05);
+}
+
+.menu-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2d3436;
+}
+
+.menu-price {
+    color: #0984e3;
+    font-weight: 700;
+}
+
+/* Admin Panel Overrides */
+.admin-theme {
+    background: #dfe6e9;
+}
+
+.admin-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    padding: 25px;
+}
+
+.admin-column {
+    background: #f5f6fa;
+    border-radius: 16px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.admin-column h3 {
+    margin: 0;
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem;
+}
+
+.admin-table-card {
+    margin: 15px;
+    padding: 15px;
+    border-radius: 12px;
+    background: white;
+    border: 1px solid #eee;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}

@@ -1,0 +1,97 @@
+.upsell-container {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #fff9db 0%, #fff 100%);
+    border-radius: 16px;
+    border: 1px solid #ffe066;
+    animation: slideUp 0.5s ease-out;
+}
+
+.upsell-title {
+    font-size: 1.1rem;
+    color: #856404;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.upsell-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+}
+
+.upsell-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.upsell-card:hover {
+    transform: translateY(-4px);
+}
+
+.upsell-image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+}
+
+.upsell-info {
+    padding: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+}
+
+.upsell-item-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1a1b1e;
+    margin: 0;
+}
+
+.upsell-item-price {
+    font-size: 0.85rem;
+    color: #fa5252;
+    font-weight: 700;
+}
+
+.upsell-add-btn {
+    margin-top: auto;
+    background: #fa5252;
+    color: white;
+    border: none;
+    padding: 0.4rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.upsell-add-btn:hover {
+    background: #e03131;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .upsell-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
