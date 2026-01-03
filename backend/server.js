@@ -39,8 +39,9 @@ app.get('/', (req, res) => {
 const allowedOrigins = [
     'http://localhost:5173',
     'http://localhost:3000',
+    'https://smart-restaurant-management-system-three.vercel.app',
     process.env.FRONTEND_URL
-].filter(Boolean);
+].filter(Boolean).map(origin => origin.replace(/\/$/, ""));
 
 app.use(cors({
     origin: (origin, callback) => {
