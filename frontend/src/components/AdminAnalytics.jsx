@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import './AdminAnalytics.css';
+import { API_URL } from '../config';
 
 export default function AdminAnalytics({ onBack }) {
     const [stats, setStats] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/reviews/analytics')
+        fetch(`${API_URL}/api/reviews/analytics`)
             .then(res => res.json())
             .then(data => {
                 setStats(data);

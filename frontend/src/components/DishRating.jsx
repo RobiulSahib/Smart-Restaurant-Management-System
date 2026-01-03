@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './DishRating.css';
 import { useCustomer } from '../context/CustomerContext';
+import { API_URL } from '../config';
 
 export default function DishRating({ order, onComplete, customerPhone }) {
     const { currentCustomer, toggleFavorite } = useCustomer();
@@ -40,7 +41,7 @@ export default function DishRating({ order, onComplete, customerPhone }) {
                 };
             });
 
-            const response = await fetch('http://localhost:5000/api/reviews', {
+            const response = await fetch(`${API_URL}/api/reviews`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

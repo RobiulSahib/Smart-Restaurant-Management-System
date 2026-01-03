@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
+import { API_URL } from '../config';
 
 const StaffContext = createContext();
 
@@ -29,7 +30,7 @@ export const StaffProvider = ({ children }) => {
     const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        const newSocket = io('http://localhost:5000');
+        const newSocket = io(API_URL);
         setSocket(newSocket);
 
         // SYNC: Listen for table updates from server

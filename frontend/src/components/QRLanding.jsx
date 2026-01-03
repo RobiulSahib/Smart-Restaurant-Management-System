@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { io } from 'socket.io-client';
 import { useLanguage } from '../context/LanguageContext';
 import './QRLanding.css';
+import { API_URL } from '../config';
 
-const SOCKET_URL = 'http://localhost:5000';
+const SOCKET_URL = API_URL;
 
 export default function QRLanding({ onScan, onBack }) {
     const { t } = useLanguage();

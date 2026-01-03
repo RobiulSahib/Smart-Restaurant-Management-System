@@ -3,8 +3,9 @@ import './OrderStatus.css';
 import io from 'socket.io-client';
 import DishRating from './DishRating';
 import { useCustomer } from '../context/CustomerContext';
+import { API_URL } from '../config';
 
-const socket = io('http://localhost:5000');
+const socket = io(API_URL);
 
 export default function OrderStatus({ order, onBack }) {
     const [status, setStatus] = useState(order?.status || 'PENDING');
@@ -57,7 +58,7 @@ export default function OrderStatus({ order, onBack }) {
         setPromoError('');
         try {
             const subtotal = order?.totalAmount || 0;
-            const res = await fetch('http://localhost:5000/api/promos/validate', {
+            const res = await fetch(`${API_URL}/api/promos/validate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ code: promoCode, subtotal })

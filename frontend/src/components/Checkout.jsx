@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './Checkout.css';
 import { useLanguage } from '../context/LanguageContext';
 import UpsellSuggestions from './UpsellSuggestions';
+import { API_URL } from '../config';
 
 export default function Checkout({ cart, onUpdateCart, onPlaceOrder, onBack, isDineIn }) {
     const { t, language } = useLanguage();
@@ -19,7 +20,7 @@ export default function Checkout({ cart, onUpdateCart, onPlaceOrder, onBack, isD
         if (!promoCode.trim()) return;
         setPromoError('');
         try {
-            const res = await fetch('http://localhost:5000/api/promos/validate', {
+            const res = await fetch(`${API_URL}/api/promos/validate`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ code: promoCode, subtotal })

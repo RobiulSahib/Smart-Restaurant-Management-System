@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_URL } from '../config';
 
 export default function PromoManagement() {
     const [promos, setPromos] = useState([]);
@@ -11,7 +12,7 @@ export default function PromoManagement() {
 
     const fetchPromos = async () => {
         try {
-            const res = await fetch('http://localhost:5000/api/promos');
+            const res = await fetch(`${API_URL}/api/promos`);
             const data = await res.json();
             setPromos(data);
         } catch (error) {
@@ -24,7 +25,7 @@ export default function PromoManagement() {
     const handleCreate = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('http://localhost:5000/api/promos', {
+            const res = await fetch(`${API_URL}/api/promos`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(newPromo)
@@ -40,7 +41,7 @@ export default function PromoManagement() {
 
     const handleToggleActive = async (id, currentStatus) => {
         try {
-            await fetch(`http://localhost:5000/api/promos/${id}`, {
+            await fetch(`${API_URL}/api/promos/${id}`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ isActive: !currentStatus })
@@ -54,7 +55,7 @@ export default function PromoManagement() {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure you want to delete this promo code?')) return;
         try {
-            await fetch(`http://localhost:5000/api/promos/${id}`, { method: 'DELETE' });
+            await fetch(`${API_URL}/api/promos/${id}`, { method: 'DELETE' });
             fetchPromos();
         } catch (error) {
             console.error('Error deleting promo:', error);

@@ -25,8 +25,9 @@ import DebugConsole from './components/DebugConsole';
 import ChatWidget from './components/ChatWidget';
 import './App.css';
 import io from 'socket.io-client';
+import { API_URL } from './config';
 
-const socket = io('http://localhost:5000');
+const socket = io(API_URL);
 
 function AppContent() {
     // ... existing state ...
@@ -63,7 +64,7 @@ function AppContent() {
                 if (filters.dairyFree) params.append('dairyFree', 'true');
                 if (filters.spiceLevel) params.append('spiceLevel', filters.spiceLevel);
 
-                const response = await fetch(`http://localhost:5000/api/dishes?${params.toString()}`);
+                const response = await fetch(`${API_URL}/api/dishes?${params.toString()}`);
                 const data = await response.json();
                 setDishes(data);
                 setLoading(false);
@@ -85,7 +86,7 @@ function AppContent() {
 
         const fetchRecommendations = async () => {
             try {
-                const response = await fetch(`http://localhost:5000/api/dishes/recommendations?mood=${selectedMood}`);
+                const response = await fetch(`${API_URL}/api/dishes/recommendations?mood=${selectedMood}`);
                 const data = await response.json();
                 setRecommendedDishes(data);
             } catch (err) {

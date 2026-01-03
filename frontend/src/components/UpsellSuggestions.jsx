@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './UpsellSuggestions.css';
 import { useLanguage } from '../context/LanguageContext';
+import { API_URL } from '../config';
 
 export default function UpsellSuggestions({ cart, onAddToCart }) {
     const [suggestions, setSuggestions] = useState([]);
@@ -23,7 +24,7 @@ export default function UpsellSuggestions({ cart, onAddToCart }) {
                 }));
                 const totalAmount = cart.reduce((acc, item) => acc + parseFloat(item.totalPrice || item.price), 0);
 
-                const response = await fetch('http://localhost:5000/api/upsell/suggestions', {
+                const response = await fetch(`${API_URL}/api/upsell/suggestions`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cartItems, totalAmount })

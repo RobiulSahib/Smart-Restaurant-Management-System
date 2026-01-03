@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { db } from '../db/simulatedDB';
+import { API_URL } from '../config';
 
 const CustomerContext = createContext();
 
@@ -31,7 +32,7 @@ export const CustomerProvider = ({ children }) => {
 
         try {
             // 1. Search
-            const searchRes = await fetch(`http://localhost:5000/api/customer?phone=${phone}`);
+            const searchRes = await fetch(`${API_URL}/api/customer?phone=${phone}`);
             const searchData = await searchRes.json();
 
             let customerData;
@@ -41,7 +42,7 @@ export const CustomerProvider = ({ children }) => {
                 customerData = searchData.customer;
             } else {
                 console.log('[Auth] Creating new user...');
-                const createRes = await fetch('http://localhost:5000/api/customer', {
+                const createRes = await fetch(`${API_URL}/api/customer`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ phone, name })
@@ -84,7 +85,7 @@ export const CustomerProvider = ({ children }) => {
         if (!currentCustomer) return;
 
         try {
-            const res = await fetch('http://localhost:5000/api/customer', {
+            const res = await fetch(`${API_URL}/api/customer`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -109,7 +110,7 @@ export const CustomerProvider = ({ children }) => {
         }
 
         try {
-            const res = await fetch('http://localhost:5000/api/customer/favorites/toggle', {
+            const res = await fetch(`${API_URL}/api/customer/favorites/toggle`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

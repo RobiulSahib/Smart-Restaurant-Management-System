@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './StaffChat.css';
 import io from 'socket.io-client';
+import { API_URL } from '../config';
 
-const socket = io('http://localhost:5000');
+const socket = io(API_URL);
 
 export default function StaffChat() {
     const [messages, setMessages] = useState([]);
@@ -11,7 +12,7 @@ export default function StaffChat() {
     useEffect(() => {
         const fetchHistory = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/chat/history');
+                const response = await fetch(`${API_URL}/api/chat/history`);
                 const data = await response.json();
                 setMessages(data);
                 setLoading(false);

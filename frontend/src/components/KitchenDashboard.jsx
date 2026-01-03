@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import './KitchenDashboard.css';
 import io from 'socket.io-client';
+import { API_URL } from '../config';
 
-const socket = io('http://localhost:5000');
+const socket = io(API_URL);
 
 export default function KitchenDashboard({ onBack }) {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
         // Fetch initial active orders
-        fetch('http://localhost:5000/api/orders?kds=true')
+        fetch(`${API_URL}/api/orders?kds=true`)
             .then(res => res.json())
             .then(data => setOrders(data))
             .catch(err => console.error("Failed to load orders", err));
