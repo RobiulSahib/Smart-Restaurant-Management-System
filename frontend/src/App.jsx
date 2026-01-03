@@ -1,3 +1,4 @@
+// Build v2 - Force Vercel Rebuild 2026-01-03
 import React, { useState, useMemo } from 'react';
 import Header from './components/Header';
 import './styles/animations.css';
