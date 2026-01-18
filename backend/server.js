@@ -206,7 +206,18 @@ io.on('connection', (socket) => {
     });
 
     socket.on('table:confirm_payment', async ({ tableId, method }) => {
+        // Find orders before they are cleared or updated
+        const ordersToUpdate = await Order.find({ tableId: tableId, paymentStatus: 'UNPAID' });
+
         await Order.updateMany({ tableId: tableId, paymentStatus: 'UNPAID' }, { $set: { paymentStatus: 'PAID', status: 'COMPLETED', paymentMethod: method } });
+
+        // Notify tracking clients that orders are now completed
+        ordersToUpdate.forEach(order => {
+            const updatedOrder = { ...order.toObject(), status: 'COMPLETED', paymentStatus: 'PAID' };
+            io.to(`order_${order._id}`).emit('order:status_update', updatedOrder);
+            io.to(`table_${tableId}`).emit('order:status_update', updatedOrder);
+        });
+
         tables = tables.map(t => t.id === parseInt(tableId) ? { ...t, status: 'free', orders: [], guests: 0 } : t);
         io.emit('tables_update', tables);
         io.to(`table_${tableId}`).emit('table:payment_success');

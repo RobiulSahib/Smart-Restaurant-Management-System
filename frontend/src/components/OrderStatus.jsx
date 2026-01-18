@@ -17,10 +17,20 @@ export default function OrderStatus({ order, onBack }) {
     const [appliedPromo, setAppliedPromo] = useState(null);
     const [promoError, setPromoError] = useState('');
 
+    // Handle null order gracefully - redirect back
+    if (!order) {
+        return (
+            <div className="status-container">
+                <p style={{ textAlign: 'center', padding: '2rem' }}>Order not found. Returning to menu...</p>
+                {onBack && setTimeout(onBack, 1000) && null}
+            </div>
+        );
+    }
+
     const isOnline = order?.orderType === 'ONLINE';
     const steps = isOnline
-        ? ['PENDING', 'COOKING', 'READY', 'DELIVERING']
-        : ['PENDING', 'COOKING', 'READY', 'SERVED'];
+        ? ['PENDING', 'COOKING', 'READY', 'DELIVERING', 'COMPLETED']
+        : ['PENDING', 'COOKING', 'READY', 'SERVED', 'COMPLETED'];
 
     useEffect(() => {
         // Join rooms to listen for updates
@@ -100,8 +110,9 @@ export default function OrderStatus({ order, onBack }) {
             case 'PENDING': return '⏳';
             case 'COOKING': return '🍳';
             case 'READY': return isOnline ? '📦' : '✅';
+            case 'DELIVERING': return '🚴';
             case 'SERVED': return '🍽️';
-            case 'DELIVERING': return '🛵';
+            case 'COMPLETED': return '🎉';
             default: return '•';
         }
     };
@@ -153,51 +164,87 @@ export default function OrderStatus({ order, onBack }) {
                         <small>Delivered by {order.servedBy || 'our team'}</small>
                     </div>
                 )}
+                {status === 'COMPLETED' && (
+                    <div className="completed-msg">
+                        <h3>Order Completed! 🎉</h3>
+                        <p>Thank you for dining with us. We hope you enjoyed your meal!</p>
+                    </div>
+                )}
             </div>
 
-            {status === 'SERVED' && (
+            {(status === 'SERVED' || status === 'COMPLETED') && (
                 <div className="bill-section">
-                    <div className="bill-details" style={{ width: '100%', marginBottom: '1rem' }}>
-                        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
-                            <span>Subtotal:</span>
-                            <span>৳{order?.totalAmount}</span>
-                        </div>
-                        {discount > 0 && (
-                            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', color: '#e11d48' }}>
-                                <span>Discount ({appliedPromo?.code}):</span>
-                                <span>-৳{discount.toFixed(2)}</span>
+                    {status === 'SERVED' && (
+                        <>
+                            <div className="bill-details" style={{ width: '100%', marginBottom: '1rem' }}>
+                                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem' }}>
+                                    <span>Subtotal:</span>
+                                    <span>৳{order?.totalAmount}</span>
+                                </div>
+                                {discount > 0 && (
+                                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.5rem', color: '#e11d48' }}>
+                                        <span>Discount ({appliedPromo?.code}):</span>
+                                        <span>-৳{discount.toFixed(2)}</span>
+                                    </div>
+                                )}
+                                <div className="bill-total" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem', paddingTop: '0.5rem', borderTop: '1px solid #eee' }}>
+                                    <span>Total:</span>
+                                    <span>৳{(order?.totalAmount - discount).toFixed(2)}</span>
+                                </div>
                             </div>
-                        )}
-                        <div className="bill-total" style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold', fontSize: '1.2rem', paddingTop: '0.5rem', borderTop: '1px solid #eee' }}>
-                            <span>Total:</span>
-                            <span>৳{(order?.totalAmount - discount).toFixed(2)}</span>
-                        </div>
-                    </div>
 
-                    {!billRequested && !appliedPromo && (
-                        <div className="promo-input-status" style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '1rem' }}>
-                            <input
-                                type="text"
-                                placeholder="Enter Promo Code"
-                                value={promoCode}
-                                onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
-                                style={{ flex: 1, padding: '8px', borderRadius: '4px', border: '1px solid #ddd' }}
-                            />
-                            <button onClick={handleApplyPromo} className="apply-promo-btn" style={{ padding: '8px 12px', background: '#333', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
-                                Apply
-                            </button>
-                        </div>
+                            {!billRequested && !appliedPromo && (
+                                <div className="promo-input-status" style={{ display: 'flex', gap: '8px', width: '100%', marginBottom: '1rem' }}>
+                                    <input
+                                        type="text"
+                                        placeholder="Enter Promo Code"
+                                        value={promoCode}
+                                        onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                                        style={{ flex: 1, padding: '8px', borderRadius: '4px', border: '1px solid #ddd' }}
+                                    />
+                                    <button onClick={handleApplyPromo} className="apply-promo-btn" style={{ padding: '8px 12px', background: '#333', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}>
+                                        Apply
+                                    </button>
+                                </div>
+                            )}
+                            {promoError && <p style={{ color: '#e11d48', fontSize: '0.8rem', marginBottom: '1rem' }}>{promoError}</p>}
+
+                            {billRequested ? (
+                                <button className="btn-request-bill" disabled>
+                                    Bill Requested 🔔
+                                </button>
+                            ) : (
+                                <button className="btn-request-bill" onClick={handleRequestBill}>
+                                    Request Bill 💳
+                                </button>
+                            )}
+                        </>
                     )}
-                    {promoError && <p style={{ color: '#e11d48', fontSize: '0.8rem', marginBottom: '1rem' }}>{promoError}</p>}
 
-                    {billRequested ? (
-                        <button className="btn-request-bill" disabled>
-                            Bill Requested 🔔
-                        </button>
-                    ) : (
-                        <button className="btn-request-bill" onClick={handleRequestBill}>
-                            Request Bill 💳
-                        </button>
+                    {status === 'COMPLETED' && (
+                        <div className="post-payment-actions" style={{ width: '100%', textAlign: 'center' }}>
+                            <button
+                                onClick={onBack}
+                                className="order-more-btn"
+                                style={{
+                                    width: '100%',
+                                    padding: '15px',
+                                    background: '#10b981',
+                                    color: 'white',
+                                    border: 'none',
+                                    borderRadius: '12px',
+                                    fontWeight: 'bold',
+                                    fontSize: '1.1rem',
+                                    cursor: 'pointer',
+                                    boxShadow: '0 4px 6px -1px rgba(16, 185, 129, 0.2)'
+                                }}
+                            >
+                                🍽️ Order More
+                            </button>
+                            <p style={{ marginTop: '1rem', color: '#666', fontSize: '0.9rem' }}>
+                                Want to try something else? Head back to the menu!
+                            </p>
+                        </div>
                     )}
                 </div>
             )}

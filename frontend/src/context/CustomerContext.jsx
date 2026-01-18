@@ -109,6 +109,22 @@ export const CustomerProvider = ({ children }) => {
             return;
         }
 
+        // Optimistic UI update - immediately toggle the favorite in local state
+        const currentFavorites = currentCustomer.favoriteDishes || [];
+        const isCurrentlyFavorited = currentFavorites.some(fav =>
+            (typeof fav === 'string' && fav === dishId) ||
+            (typeof fav === 'object' && fav._id === dishId)
+        );
+
+        const newFavorites = isCurrentlyFavorited
+            ? currentFavorites.filter(fav =>
+                (typeof fav === 'string' ? fav !== dishId : fav._id !== dishId))
+            : [...currentFavorites, dishId];
+
+        const optimisticCustomer = { ...currentCustomer, favoriteDishes: newFavorites };
+        setCurrentCustomer(optimisticCustomer);
+        localStorage.setItem('customer_session', JSON.stringify(optimisticCustomer));
+
         try {
             const res = await fetch(`${API_URL}/api/customer/favorites/toggle`, {
                 method: 'POST',
@@ -127,6 +143,9 @@ export const CustomerProvider = ({ children }) => {
             console.log('[Favorites] Updated:', updatedCustomer.favoriteDishes);
         } catch (err) {
             console.error('[Favorites] Toggle Failed:', err);
+            // Revert optimistic update on error
+            setCurrentCustomer(currentCustomer);
+            localStorage.setItem('customer_session', JSON.stringify(currentCustomer));
         }
     };
 

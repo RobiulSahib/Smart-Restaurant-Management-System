@@ -257,14 +257,23 @@ function AppContent() {
 
             const handleStatusUpdate = (updated) => {
                 console.log("[Global] Order Update:", updated.status);
+
+                // For these statuses, we only clear if NOT currently on the status view
+                // This allows the user to see the "Thank You" screen
+                const completedStatuses = ['PAID', 'COMPLETED', 'CANCELLED'];
+                if (completedStatuses.includes(updated.status) && view !== 'order-status') {
+                    console.log("[Global] Order completed and user not tracking, clearing session");
+                    setActiveOrder(null);
+                    setTableId(null);
+                    return;
+                }
+
+                // For SERVED or COMPLETED status, keep the order visible
                 setActiveOrder(prev => {
                     if (prev && updated._id === prev._id) return updated;
                     return prev;
                 });
             };
-
-            // Don't clear activeOrder here - let OrderStatus show rating UI first
-            // OrderStatus will redirect user back to menu after rating is complete
 
             socket.on('order:status_update', handleStatusUpdate);
 
@@ -288,6 +297,7 @@ function AppContent() {
                     onLoyaltyClick={() => handleViewChange('loyalty')}
                     onStaffClick={() => setView('staff')}
                     onHomeClick={goHome}
+                    onCartClick={() => handleViewChange('checkout')}
                 />
             )}
 
@@ -300,7 +310,16 @@ function AppContent() {
                 )}
 
                 {view === 'order-status' && (
-                    <OrderStatus order={activeOrder} onBack={() => { setActiveOrder(null); setView('menu'); }} />
+                    <OrderStatus
+                        order={activeOrder}
+                        onBack={() => {
+                            if (activeOrder?.status === 'COMPLETED' || activeOrder?.status === 'PAID') {
+                                setActiveOrder(null);
+                                setTableId(null);
+                            }
+                            setView('menu');
+                        }}
+                    />
                 )}
 
                 {view === 'staff' && (
@@ -317,6 +336,7 @@ function AppContent() {
                             onReservationClick={() => handleViewChange('reservation')}
                             onLoyaltyClick={() => handleViewChange('loyalty')}
                             onHomeClick={goHome}
+                            onCartClick={() => handleViewChange('checkout')}
                         />
                         <QRLanding onScan={handleQRScan} onBack={goHome} />
                     </>

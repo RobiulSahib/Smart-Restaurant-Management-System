@@ -1,18 +1,37 @@
+/* DishRating.css - Themed to match website design */
+
 .dish-rating-card {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(145deg, #ffffff, #f8f9fa);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
     margin-top: 2rem;
     text-align: left;
-    border: 1px solid #eee;
+    border: 1px solid rgba(255, 107, 107, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.dish-rating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
 }
 
 .rating-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     margin-bottom: 1.5rem;
-    color: #1a1a1a;
+    color: #2d3436;
     text-align: center;
+    font-weight: 700;
+}
+
+.rating-title.pink-accent {
+    color: #ff6b6b;
 }
 
 .rating-items {
@@ -22,19 +41,25 @@
 }
 
 .rating-item {
-    border-bottom: 1px solid #f0f0f0;
-    padding-bottom: 1.5rem;
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.2rem;
+    border: 1px solid #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
 }
 
-.rating-item:last-child {
-    border-bottom: none;
+.rating-item:hover {
+    border-color: #ff6b6b;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.1);
 }
 
 .dish-name-label {
     font-weight: 700;
-    color: #444;
+    color: #2d3436;
     display: block;
     margin-bottom: 0.5rem;
+    font-size: 1.05rem;
 }
 
 .star-rating {
@@ -44,64 +69,246 @@
 }
 
 .star {
-    font-size: 1.8rem;
+    font-size: 2rem;
     cursor: pointer;
-    color: #ddd;
+    color: #e5e7eb;
     transition: all 0.2s ease;
 }
 
 .star.filled {
-    color: #ffc107;
-    transform: scale(1.1);
+    color: #ffb347;
+    transform: scale(1.15);
+    filter: drop-shadow(0 2px 4px rgba(255, 179, 71, 0.4));
 }
 
 .star:hover {
     transform: scale(1.2);
+    color: #ffb347;
 }
 
 .rating-comment-box {
     width: 100%;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0.8rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 1rem;
     font-size: 0.9rem;
     resize: vertical;
-    min-height: 60px;
-    background: #fafafa;
+    min-height: 70px;
+    background: #f8f9fa;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.rating-comment-box:focus {
+    outline: none;
+    border-color: #ff6b6b;
+    box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.1);
+    background: #fff;
+}
+
+.rating-comment-box::placeholder {
+    color: #9ca3af;
+}
+
+/* Button Group Vertical */
+.button-group-vertical {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
 }
 
 .submit-rating-btn {
     width: 100%;
-    margin-top: 1.5rem;
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     border: none;
-    border-radius: 12px;
-    background: #1a1a1a;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
     color: white;
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
 }
 
 .submit-rating-btn:hover {
-    background: #333;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
 }
 
-.submit-rating-btn:disabled {
-    background: #ccc;
+.submit-rating-btn:disabled,
+.submit-rating-btn.loading {
+    background: #e5e7eb;
+    color: #9ca3af;
     cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
 
+.skip-link-btn {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.skip-link-btn:hover {
+    color: #6b7280;
+}
+
+.skip-btn-text {
+    background: none;
+    border: none;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.skip-btn-text:hover {
+    color: #6b7280;
+}
+
+/* Thank You Screen */
 .rating-thank-you {
-    padding: 2rem;
+    padding: 3rem 2rem;
     text-align: center;
-    background: #e6fffa;
-    border-radius: 16px;
-    color: #2c7a7b;
+    background: linear-gradient(145deg, #fff5f5, #ffe3e3);
+    border-radius: 24px;
+    color: #ff6b6b;
     margin-top: 2rem;
+    border: 1px solid rgba(255, 107, 107, 0.2);
+    box-shadow: 0 20px 60px rgba(255, 107, 107, 0.1);
 }
 
 .rating-thank-you h3 {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.rating-thank-you p {
+    color: #e55a5a;
+    font-size: 1rem;
+}
+
+.success-lottie {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Favorite Pick Step */
+.favorite-pick-step {
+    background: linear-gradient(145deg, #fff5f7, #fff);
+}
+
+.pick-subtitle {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.pick-item {
+    background: white;
+    border: 2px solid #f0f0f0;
+    border-radius: 16px;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.pick-item:hover {
+    border-color: #ff6b6b;
+    transform: translateY(-2px);
+}
+
+.pick-item.picked {
+    background: linear-gradient(145deg, #fff0f0, #ffe5e5);
+    border-color: #ff6b6b;
+    box-shadow: 0 8px 20px rgba(255, 107, 107, 0.15);
+}
+
+.pick-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.heart-icon {
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.pick-item.picked .heart-icon {
+    transform: scale(1.2);
+}
+
+/* Fav Star Button in Feedback */
+.fav-star-btn {
+    font-size: 1.3rem;
+    transition: transform 0.2s ease;
+}
+
+.fav-star-btn:hover {
+    transform: scale(1.2);
+}
+
+.fav-star-btn.active {
+    animation: heartPulse 0.3s ease;
+}
+
+@keyframes heartPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Finish Button */
+.finish-btn {
+    width: 100%;
+    padding: 1rem 1.5rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(90deg, #ff6b6b, #ff8787);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 25px rgba(255, 107, 107, 0.3);
+}
+
+.finish-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(255, 107, 107, 0.4);
 }
